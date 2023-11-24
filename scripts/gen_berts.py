@@ -140,6 +140,11 @@ class LatinBERT():
 		sents=convert_to_toks(raw_sents)
 		batch_size=32
 		batched_data, batched_mask, batched_transforms, ordering=self.get_batches(sents, batch_size, self.wp_tokenizer)
+	        # Debug: Print lengths of tokenized sentences
+	        for sent in sents:
+	            print(f"Tokenized sentence length: {len(sent)}")
+	            if len(sent) > 512:
+	                print("Warning: Sentence exceeds 512 tokens.")
 
 		ordered_preds=[]
 		for b in range(len(batched_data)):
